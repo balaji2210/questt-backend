@@ -3,7 +3,9 @@ const { errorHandler, catchHandler } = require("../utils/handler");
 
 module.exports.authenticateUser = async (req, res, next) => {
   try {
-    const token = req?.cookies?.token || null;
+    const token = req?.cookies?.token || req.headers["x-access-token"] || null;
+
+    console.log(">>", req?.cookies);
 
     if (!token) return errorHandler(res, "Authentication Failed", 401);
 

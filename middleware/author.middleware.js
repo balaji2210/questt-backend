@@ -3,7 +3,10 @@ const { errorHandler, catchHandler } = require("../utils/handler");
 
 module.exports.authorMiddleware = async (req, res, next) => {
   try {
-    const token = req?.cookies?.token || req.headers["x-access-token"] || null;
+    const token =
+      req?.cookies?.token ||
+      req?.header("Authorization")?.replace("Bearer ", "") ||
+      null;
 
     if (!token) return errorHandler(res, "Authentication Failed", 401);
 

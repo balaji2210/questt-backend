@@ -8,8 +8,6 @@ module.exports.authenticateUser = async (req, res, next) => {
       req?.header("Authorization")?.replace("Bearer ", "") ||
       null;
 
-    console.log(">>", req?.cookies);
-
     if (!token) return errorHandler(res, "Authentication Failed", 401);
 
     let decoded = null;

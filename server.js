@@ -41,7 +41,12 @@ const { errorHandler } = require("./utils/handler");
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
-app.use(cors({ credentials: true, origin: ["http://localhost:3000"] }));
+app.use(
+  cors({
+    credentials: true,
+    origin: ["https://tricky-fly-garters.cyclic.app"],
+  })
+);
 app.use(morgan("tiny"));
 app.use(cookieParser());
 

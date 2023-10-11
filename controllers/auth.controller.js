@@ -53,10 +53,7 @@ module.exports.signUp = async (req, res) => {
         expiresIn: "30d",
       }
     );
-    res.cookie("token", token, {
-      httpOnly: process.env.NODE_ENV === "production",
-      secure: process.env.NODE_ENV === "production",
-    });
+    res.cookie("token", token);
 
     return responseHandler(res, "User Created", {
       email: user?.email,
@@ -97,17 +94,7 @@ module.exports.signIn = async (req, res) => {
         }
       );
 
-      const cookieData = {
-        maxAge: 36288000,
-        httpOnly: process.env.NODE_ENV === "production",
-        secure: process.env.NODE_ENV === "production",
-      };
-
-      if (process.env.NODE_ENV === "production") {
-        cookieData.domain = ".vercel.app";
-      }
-
-      res.cookie("token", token, cookieData);
+      res.cookie("token", token);
       return responseHandler(res, "Login Success", {
         email: user?.email,
         _id: user?._id,

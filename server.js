@@ -44,7 +44,7 @@ app.use(express.urlencoded({ extended: true }));
 app.use(
   cors({
     credentials: true,
-    origin: ["https://tricky-fly-garters.cyclic.app"],
+    origin: ["https://questt.vercel.app", "https://questt.netlify.app"],
   })
 );
 app.use(morgan("tiny"));
